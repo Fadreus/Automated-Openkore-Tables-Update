@@ -116,6 +116,14 @@ $patch->convert_iteminfo_lub($current_dir);
 print "[SCRIPT] Loading Current Tables Files and Ragexe (also extract packets here)...\n";
 $extractor->load_current_tables_files( $current_dir.'/'.$config->{'download_dir'}.'/extracted_files/'.$config->{'executable'}, $config->{'git_connection_dir'}."/recvpackets.txt", $config->{'git_connection_dir'}."/shuffle.txt" );
 
+# write recvpackets
+print "[SCRIPT] Writing recvpackets...\n";
+$extractor->write_recvpackets( $current_dir.'/'.$config->{'download_dir'}."/extracted_files/recvpackets.txt" );
+
+# write sync
+print "[SCRIPT] Writing sync...\n";
+$extractor->write_sync( $current_dir.'/'.$config->{'download_dir'}."/extracted_files/sync.txt" );
+
 # update cryptkeys in servers.txt
 print "[SCRIPT] Updating CryptKeys...\n";
 $extractor->update_cryptkeys( $config->{'git_root'}."/tables/servers.txt", $config->{'servers_block_name'} );
@@ -124,14 +132,6 @@ $extractor->update_cryptkeys( $config->{'git_root'}."/tables/servers.txt", $conf
 print "[SCRIPT] Writing Shuffle...\n";
 $extractor->generate_shuffle();
 $extractor->write_shuffle( $current_dir.'/'.$config->{'download_dir'}.'/extracted_files/shuffle.txt' );
-
-# write recvpackets
-print "[SCRIPT] Writing recvpackets...\n";
-$extractor->write_recvpackets( $current_dir.'/'.$config->{'download_dir'}."/extracted_files/recvpackets.txt" );
-
-# write sync
-print "[SCRIPT] Writing sync...\n";
-$extractor->write_sync( $current_dir.'/'.$config->{'download_dir'}."/extracted_files/sync.txt" );
 
 # prepare to commit
 print "[SCRIPT]Setuping Openkore Git DIR to commit...\n";
